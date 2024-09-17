@@ -1,0 +1,54 @@
+# Ignore Visual Studio Code files
+.vscode/
+
+# Ignore Visual Studio files
+.vs/
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.suo
+*.sdf
+*.opensdf
+*.cache
+*.ncb
+*.user
+*.userosscache
+*.suo
+*.pdb
+*.idb
+*.ilk
+*.log
+
+# Ignore build results
+/build/
+/bin/
+/obj/
+/Debug/
+/Release/
+
+# Ignore dependency directories
+/deps/
+/lib/
+
+# Ignore macOS Finder files
+.DS_Store
+
+# Ignore node_modules
+node_modules/
+
+# Ignore temporary files
+*.tmp
+*.swp
+*.bak
+*.orig
+
+# Ignore other IDE files
+*.idea/
+*.project
+*.classpath
+
+# Ignore CMake files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile

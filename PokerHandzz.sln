@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35303.130
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PokerHandzz", "PokerHandzz\PokerHandzz.vcxproj", "{45FB77EA-904C-4058-B595-7C64CD1C2F41}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45FB77EA-904C-4058-B595-7C64CD1C2F41}.Debug|x64.ActiveCfg = Debug|x64
+		{45FB77EA-904C-4058-B595-7C64CD1C2F41}.Debug|x64.Build.0 = Debug|x64
+		{45FB77EA-904C-4058-B595-7C64CD1C2F41}.Debug|x86.ActiveCfg = Debug|Win32
+		{45FB77EA-904C-4058-B595-7C64CD1C2F41}.Debug|x86.Build.0 = Debug|Win32
+		{45FB77EA-904C-4058-B595-7C64CD1C2F41}.Release|x64.ActiveCfg = Release|x64
+		{45FB77EA-904C-4058-B595-7C64CD1C2F41}.Release|x64.Build.0 = Release|x64
+		{45FB77EA-904C-4058-B595-7C64CD1C2F41}.Release|x86.ActiveCfg = Release|Win32
+		{45FB77EA-904C-4058-B595-7C64CD1C2F41}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C4DEAB0E-C0E3-4F64-AF4A-5E8C0B733C99}
+	EndGlobalSection
+EndGlobal
