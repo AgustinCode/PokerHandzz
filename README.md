@@ -1,6 +1,6 @@
    # 🃏 PokerHandzz
 
-   ![alt text](images/image.png)
+   ![Poker Banner](https://via.placeholder.com/800x200?text=PokerHandzz)
 
    ## 📖 Description
 
