@@ -8,11 +8,11 @@ Card::Card() {}
 Card::Card(Suit s, Value v) : suit(s), value(v) {}
 
 	
-Suit Card::getSuit() { return suit; };
+Suit Card::getSuit() const { return suit; };
 
-Value Card::getValue() { return value; };
+Value Card::getValue() const { return value; };
 
-std::string Card::suitToString() {
+std::string Card::suitToString() const {
 	Suit s = Card::suit;
 	switch (s) {
 	case Suit::Hearts:  return "Hearts";
@@ -26,7 +26,7 @@ std::string Card::suitToString() {
 };
 
 
-std::string Card::valueToString() {
+std::string Card::valueToString() const {
 	Value v = Card::value;
 	switch (v) {
 	case Value::Two:   return "Two";
@@ -68,7 +68,7 @@ Card Card::summonCard() {
 }
 
 
-std::string Card::toStringCard() { return (valueToString() + "/" + suitToString()); };
+std::string Card::toStringCard() const { return (valueToString() + "/" + suitToString()); };
  
 void Card::display() {
 	std::cout << toStringCard() << std::endl;

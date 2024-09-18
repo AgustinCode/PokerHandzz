@@ -1,9 +1,14 @@
 #include "Hand.h"
 #include "Card.h"
 #include "Player.h"
+#include "Game.h"
 #include <iostream>
+#include <windows.h>
 
 Hand::Hand() {}
+
+
+
 
 void Hand::newHand() {
 	if (cards.empty()) { 
@@ -22,12 +27,13 @@ void Hand::resetHand() {
 }
 
 
-void Hand::displayHand(const Player& plr) {
-	if (!cards.empty()) { // Cambiar de hasCards a !cards.empty()
-		std::cout << "Player " << plr.getId() << std::endl;
-		cards[0].display();
-		cards[1].display();
-		std::cout << "\n";
+void Hand::displayHand(const Player& player) {
+	std::cout << "  ";
+	for (const auto& card : cards) {
+		// Se establece el color rojo para corazones y diamantes y negro para tréboles y picas.
+		int colorCode = (card.suitToString() == "Hearts" || card.suitToString() == "Diamonds") ? 12 : 15;  // 12 es rojo en muchos sistemas, 0 para negro
+		Game::setColor(colorCode);
+		std::cout << card.toStringCard() << "  ";
 	}
-	else std::cout << "You have no cards" << std::endl;
+	std::cout << std::endl;
 }

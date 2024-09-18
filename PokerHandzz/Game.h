@@ -36,6 +36,7 @@ public:
 	void clearPlayers();
 
 	// Game functions
+	void generateComCards();
 	void dealCards();
 	void showComCards();
 	void nextState();
@@ -51,6 +52,7 @@ public:
 	const std::vector<Player>& getPlayers() const { return players; }
 
 	// Displays
+	static void setColor(int color);	
 	void displayGameState();
 	void displayPlayers();
 

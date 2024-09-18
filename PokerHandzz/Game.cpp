@@ -1,14 +1,27 @@
-#include "Game.h"
+﻿#include "Game.h"
 #include "Player.h"
 #include "Hand.h"
 #include <iostream>
 #include <cstdlib>
 #include <conio.h>
+#include <iomanip>
+#include <windows.h>
+
 
 Game::Game(int players) : playerCount(players) {}
 
+
+
 int gameState = 0;
 bool gameEnded = false;
+
+// Set Colors --------------------------------------------------
+void Game::setColor(int color) {
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+}
+// -------------------------------------------------------------
+
+
 
 // Player functions--------------------------------------------
 void Game::addPlayer() {
@@ -58,7 +71,11 @@ void Game::nextState() {
 
 
 void Game::showComCards() {
-    std::cout << "-----------------------------------------------------------" << std::endl;
+    setColor(14); // Yellow
+    std::cout << "+-------------------------------------------------------+" << std::endl;
+    std::cout << "|                     COMMUNITY CARDS                   |" << std::endl;
+    std::cout << "+-------------------------------------------------------+" << std::endl;
+    setColor(7); // White
 
     switch (state) {
     case GameState::Preflop:
@@ -81,75 +98,113 @@ void Game::showComCards() {
         std::cout << "Unknown game state!" << std::endl;
     }
 
-    std::cout << "-----------------------------------------------------------" << std::endl;
+    setColor(14); // Yellow
+    std::cout << "+-------------------------------------------------------+" << std::endl;
+    std::cout << "| Current Stage: " << std::setw(39) << std::left;
+    switch (state) {
+    case GameState::Preflop: std::cout << "Preflop"; break;
+    case GameState::Flop: std::cout << "Flop"; break;
+    case GameState::Turn: std::cout << "Turn"; break;
+    case GameState::River: std::cout << "River"; break;
+    case GameState::Showdown: std::cout << "Showdown"; break;
+    }
+    std::cout << " |" << std::endl;
+    std::cout << "+-------------------------------------------------------+" << std::endl;
+    setColor(7); // White
 }
+
 
 void Game::river() {
+    setColor(10); // Light green
+    std::cout << "                        RIVER ROUND                         " << std::endl;
+    setColor(7); // White
+    std::cout << "  ";
+    for (int x = 0; x < 5; x++) {
+        setColor(community[x].suitToString() == "Hearts" || community[x].suitToString() == "Diamonds" ? 12 : 15);
+        std::cout << community[x].toStringCard() << "  ";
+    }
+    std::cout << std::endl << std::endl;
+}
+
+void Game::generateComCards() {
     for (int i = 0; i < 5; i++) {
-        if (i == 2) {
-            std::cout << "RIVER ROUND :  ";
-            for (int x = 0; x < 5; x++) {
-                std::cout << x + 1 << ": " << community[x].toStringCard() << " - ";
-            }
-        }
-        std::cout << std::endl;
+        community.emplace_back(Card::summonCard());
     }
 }
+
 
 void Game::preflop() {
-    for (int i = 0; i < 5; i++) {
-        if (i == 2) {
-            std::cout << "PREFLOP ROUND :  NO CARDS ON THE TABLE";
-            for (int x = 0; x < 5; x++) {
-                community.emplace_back(Card::summonCard());
-            }
-        }
-        std::cout << std::endl;
-    }
+    setColor(10); // Light green
+    std::cout << "                       PREFLOP ROUND                       " << std::endl;
+    setColor(7); // White
+    std::cout << "                     NO CARDS ON THE TABLE                 " << std::endl << std::endl;
 }
+
 
 void Game::flop() {
-    for (int i = 0; i < 5; i++) {
-        if (i == 2) {
-            std::cout << "FLOP ROUND :  ";
-            for (int x = 0; x < 3; x++) {
-                std::cout << x + 1 << ": " << community[x].toStringCard() << " - ";
-            }
-        }
-        std::cout << std::endl;
+    setColor(10); // Light green
+    std::cout << "                        FLOP ROUND                         " << std::endl;
+    setColor(7); // White
+    std::cout << "  ";
+    for (int x = 0; x < 3; x++) {
+        setColor(community[x].suitToString() == "Hearts" || community[x].suitToString() == "Diamonds" ? 12 : 15);
+        std::cout << community[x].toStringCard() << "  ";
     }
+    std::cout << std::endl << std::endl;
 }
+
 
 void Game::turn() {
-    for (int i = 0; i < 5; i++) {
-        if (i == 2) {
-            std::cout << "TURN ROUND :  ";
-            for (int x = 0; x < 4; x++) {
-                std::cout << x + 1 << ": " << community[x].toStringCard() << " - ";
-            }
-        }
-        std::cout << std::endl;
+    setColor(10); // Light green
+    std::cout << "                       TURN ROUND                      " << std::endl;
+    setColor(7); // White
+    std::cout << "  ";
+    for (int x = 0; x < 4; x++) {
+        setColor((community[x].suitToString() == "Hearts" || community[x].suitToString() == "Diamonds") ? 12 : 15);
+        std::cout << community[x].toStringCard() << "  ";
     }
+    std::cout << std::endl << std::endl;
 }
 
+
+
+
 void Game::showdown() {
-    std::cout << "Match ended" << std::endl;
+    setColor(10); // Ligth green
+    std::cout << "                       SHOWDOWN ROUND                      " << std::endl;
+    setColor(7); // White
+    std::cout << "                        MATCH ENDED                        " << std::endl << std::endl;
 }
+
 
 void Game::reset() {
     std::cout << "Game reset" << std::endl;
 }
 
+// ------------------------------------------------------------
+
+// Display functions -------------------------------------------
 void Game::displayGameState() {
     std::cout << gameState;
 }
 
+
 void Game::displayPlayers() {
     for (int i = 0; i < players.size(); i++) {
+        setColor(11); // Ligth blue
+        std::cout << "+-------------------------------------------------------+" << std::endl;
+        std::cout << "| Player " << i + 1 << std::setw(52) << "|" << std::endl;
+        std::cout << "+-------------------------------------------------------+" << std::endl;
+        setColor(7); // White
         players[i].hand->displayHand(players[i]);
+        std::cout << std::endl;
     }
 }
 
+// ------------------------------------------------------------
+
+
+// Game Loop --------------------------------------------------
 void Game::gameLoop() {
     // Add players
     for (int i = 0; i < playerCount; i++) {
@@ -157,26 +212,22 @@ void Game::gameLoop() {
     }
 
     // Deal cards
+    generateComCards();
     dealCards();
 
     // Show cards
     while (!gameEnded) {
-
-
+        system("cls");
         showComCards();
         displayPlayers();
-        std::cout << "Use arrow keys to continue." << std::endl;
-        _getch(); 
-        system("cls");
-        nextState();
-        displayPlayers();
-        std::cout << "Use arrow keys to continue." << std::endl;
+        setColor(14); // Amarillo
+        std::cout << "Press any key to continue to the next stage." << std::endl;
+        setColor(7); // Blanco
         _getch();
-        system("cls");
-
+        nextState();
+        _getch();
     }
-    
-
-
-
 }
+
+// ------------------------------------------------------------
+

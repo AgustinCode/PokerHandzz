@@ -40,14 +40,14 @@ public:
 	Card();
 	Card(Suit s, Value v);
 
-	Suit getSuit();
-	Value getValue();
+	Suit getSuit() const;
+	Value getValue() const;
 
 	static Card summonCard();
 
-	std::string suitToString();
-	std::string valueToString();
-	std::string toStringCard();
+	std::string suitToString() const;
+	std::string valueToString() const;
+	std::string toStringCard() const;
 	void display();
 
 	
